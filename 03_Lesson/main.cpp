@@ -2,59 +2,53 @@
 #include <cstdlib>
 #include <ctime>
 
-#include "pokemon.h"
+#include "Waterpokemon.h"
+#include "Firepokemon.h"
+#include "Earthpokemon.h"
+#include "icepokemon.h"
 
 
 int main() {
 
     std::srand(time(nullptr));
 
-    Pokemon shiggy;
-    shiggy.initPokemon("Shiggy", 1, 150, 7);
+    Waterpokemon shiggy("Shiggy", 1, 150, 7);
+    shiggy.addAttack(Attack("water gun", Water, 25));
+    shiggy.addAttack(Attack("tail whip", Normal, 15));
+    shiggy.addAttack(Attack("rain dance", Water, 5));
+    shiggy.addAttack(Attack("hydro pump", Water, 10));
 
-    // Attacks
-    Attack watergun;
-    watergun.initAttack("water gun", 25);
-    Attack tailwhip;
-    tailwhip.initAttack("tail whip", 15);
-    Attack raindance;
-    raindance.initAttack("rain dance", 5);
-    Attack hydropump;
-    hydropump.initAttack("hydro pump", 10);
+    Firepokemon lavados("Lavados", 1, 100, 23);
+    lavados.addAttack(Attack("wind", Flight, 20));
+    lavados.addAttack(Attack("ember", Fire, 10));
+    lavados.addAttack(Attack("wind cut", Earth, 15));
+    lavados.addAttack(Attack("heat wave", Fire, 5));
 
-    // Add Attacks to Pokemon
-    shiggy.addAttack(watergun);
-    shiggy.addAttack(tailwhip);
-    shiggy.addAttack(raindance);
-    shiggy.addAttack(hydropump);
+    Earthpokemon diglett("Diglett", 1, 50, 50);
+    diglett.addAttack(Attack("sand attack", Earth, 5));
+    diglett.addAttack(Attack("Scratch", Normal, 10));
+    diglett.addAttack(Attack("slash", Normal, 15));
+    diglett.addAttack(Attack("dig", Earth, 10));
 
-
-
-    Pokemon lavados;
-    lavados.initPokemon("Lavados", 1, 100, 23);
-
-    Attack wind;
-    wind.initAttack("wind", 20);
-    Attack ember;
-    ember.initAttack("ember", 10);
-    Attack windcut;
-    windcut.initAttack("wind cut", 15);
-    Attack heatwave;
-    heatwave.initAttack("heat wave", 5);
-
-    lavados.addAttack(wind);
-    lavados.addAttack(ember);
-    lavados.addAttack(windcut);
-    lavados.addAttack(heatwave);
-
-
-
+    Icepokemon freezer("Freezer", 1, 50, 99);
+    freezer.addAttack(Attack("snow ball", Ice, 5));
+    freezer.addAttack(Attack("Scratch", Normal, 10));
+    freezer.addAttack(Attack("slash", Normal, 15));
+    freezer.addAttack(Attack("snow storm", Ice, 10));
 
     std::cout << "------------------------------" << std::endl;
 
-    if(shiggy.fight(&lavados)){
-        std::cout << shiggy.getName() << " won and still has " << shiggy.getHitpoints() << "hp left! "<< std::endl;
+    if (shiggy.fight(&lavados)) {
+        std::cout << shiggy.getName() << " won!" << std::endl;
         shiggy.levelUp();
+        std::cout << "------------------------------" << std::endl;
+        if (shiggy.fight(&diglett)) {
+            std::cout << shiggy.getName() << " won!" << std::endl;
+            std::cout << "------------------------------" << std::endl;
+            if (shiggy.fight(&freezer)) {
+                std::cout << shiggy.getName() << " won!" << std::endl;
+            }
+        }
 
     }
     std::cout << "------------------------------" << std::endl;

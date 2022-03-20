@@ -6,20 +6,26 @@
 
 
 #include <string>
+#include "type.h"
 
 class Attack {
 
 
 private:
     std::string name;
+    Type damageType;
     int damage;
     bool isKnown;
 
 public:
 
-    void initAttack(const std::string& name, int damage);
+    //Default Konstruktor
+    Attack() : damage(0), isKnown(false) {}
 
-    void initAttack();
+    Attack(const std::string &name, const Type &damageType, int damage)
+            : name(name), damageType(damageType), damage(damage), isKnown(true) {}
+
+
 
     const std::string &getName() const;
 
@@ -27,6 +33,7 @@ public:
 
     bool isIsKnown() const;
 
+    Type getDamageType() const;
 
 };
 

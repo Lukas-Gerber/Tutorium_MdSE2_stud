@@ -5,18 +5,6 @@
 #include <iostream>
 #include "pokemon.h"
 
-void Pokemon::initPokemon(const std::string &name, int level, int hitpoints,
-                          const int pokedexNumber) {
-    this->name = name;
-    this->level = level;
-    this->hitpoints = hitpoints;
-    this->pokedexNumber = pokedexNumber;
-
-    for (int i = 0; i < (sizeof(this->storage) / sizeof(this->storage[0])); i++) {
-        this->storage[i].initAttack();
-    }
-
-}
 
 int Pokemon::addAttack(const Attack &attack) {
     for (int i = 0; i < (sizeof(this->storage) / sizeof(this->storage[0])); i++) {
@@ -45,19 +33,6 @@ bool Pokemon::fight(Pokemon *rival) {
     return this->getHitpoints() > 0;
 }
 
-
-void Pokemon::attack(Pokemon *enemy) {
-    int rand = std::rand() % 4;
-    Attack *a = this->getAttack(rand);
-
-    int damage = a->getDamage();
-
-    std::cout << this->name << " hits " << enemy->getName() << " with "
-              << a->getName() << " for " << damage << std::endl;
-
-    enemy->setHitpoints(enemy->getHitpoints() - damage);
-}
-
 void Pokemon::levelUp() {
     this->level += 1;
     this->hitpoints += this->hitpoints * this->level;
@@ -81,6 +56,11 @@ void Pokemon::setHitpoints(int hitpoints) {
 Attack *Pokemon::getAttack(int index) {
     Attack &attack = this->storage[index];
     return &attack;
+}
+
+std::ostream& operator<<(std::ostream& out, const Pokemon& c) {
+    out << c.getName() << " (" << c.getHitpoints() << " hp)";
+    return out;
 }
 
 

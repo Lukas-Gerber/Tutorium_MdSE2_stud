@@ -51,7 +51,7 @@ int Pokemon::getHitpoints() const {
 }
 
 void Pokemon::setHitpoints(int hitpoints) {
-    Pokemon::hitpoints = hitpoints;
+    this->hitpoints = hitpoints;
 }
 
 bool Pokemon::isIsCaught() const {

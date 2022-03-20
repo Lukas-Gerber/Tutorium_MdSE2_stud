@@ -9,6 +9,7 @@
 #include <string>
 #include <ostream>
 #include "attack.h"
+#include "type.h"
 
 
 class Pokemon {
@@ -22,15 +23,24 @@ private:
 
 public:
 
-    void initPokemon(const std::string& name, int level, int hitpoints, int pokedexNumber);
+    Pokemon(const std::string &name, int level, int hitpoints, int pokedexNumber)
+            : name(name), level(level), hitpoints(hitpoints), pokedexNumber(pokedexNumber) {
 
-    int addAttack(const Attack& attack);
+        std::cout << "Calling Pokemon::Constructor" << std::endl;
+    }
 
-    Attack* getAttack(int index);
+    ~Pokemon() {};
+
+    // Abstrakte Funktion = Funktion ohne implementierung, diese erfolgt in den Kindklassen
+    virtual void attack(Pokemon *enemy) = 0;
+
+    virtual Type &getEnumType() = 0;
+
+    int addAttack(const Attack &attack);
+
+    Attack *getAttack(int index);
 
     bool fight(Pokemon *rival);
-
-    void attack(Pokemon *enemy);
 
     void levelUp();
 
@@ -42,8 +52,8 @@ public:
 
     void setHitpoints(int hitpoints);
 
+};
 
- };
-
+std::ostream& operator<<(std::ostream& out, const Pokemon& c);
 
 #endif //LESSON_3_VORLAGE_POKEMON_H
