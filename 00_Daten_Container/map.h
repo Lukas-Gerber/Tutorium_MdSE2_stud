@@ -22,21 +22,14 @@ void print_map(std::string comment, const std::map<std::string, int> &m) {
 void map() {
     // Container in der Standardbibliothek
 
-    // 1. Sequentielle Container
-    //      Speichern Elemente hintereinander
-    //      Elementzugriff über Index
-    //      Dazu gehören z.B.:
-    //          - array (statisch)
-    //          - vector (dynamisch)
 
+    // 1.2 Map (https://en.cppreference.com/w/cpp/container/map)
 
-    // 1.1 vector (https://en.cppreference.com/w/cpp/container/vector)
-    // dynamisches Array
-    // In dem header #include <vector> zu finden
+    // In dem header #include <map> zu finden
 
-    // Erzeugen eines Vectors
-    // Zwischen den <>-Klammern wird der Datentype der Inhalte des Vectors angegeben
-    // vec ist in diesem Beispiel der Variablenname
+    // Erzeugen eines Map
+    // Zwischen den <>-Klammern werden die Datentypen der Inhalte der Map angegeben
+    // mapVar ist in diesem Beispiel der Variablenname
     std::map<std::string, int> mapVar = {{"key1", 10},
                                          {"key2", 20},
                                          {"key3", 30},
@@ -45,7 +38,7 @@ void map() {
     print_map("Inhalt: ", mapVar);
     std::cout << "---------------------------------" << std::endl;
 
-    // Wichtigste Funktionen für den Vector
+    // Wichtigste Funktionen für die Map
 
     // size() => gibt aktuelle Groesse zurück
     std::cout << "size(): " << mapVar.size() << std::endl;
@@ -63,7 +56,7 @@ void map() {
     print_map("Map nach suche bei Key100: ", mapVar);
     std::cout << "---------------------------------" << std::endl;
 
-    // - at(INDEX), Suchen vom Wert des angegebenen Keys (mit Grenz-Ueberprüpfung)
+    // - at(KEY), Suchen vom Wert des angegebenen Keys (mit Grenz-Ueberprüpfung)
     // int b = mapVar.at("key200"); // auskommentieren um Fehlermeldung zu sehen
 
     // - mapVar[KEY] = WERT, ueberschreiben vom Wert des angegebenen Keys
